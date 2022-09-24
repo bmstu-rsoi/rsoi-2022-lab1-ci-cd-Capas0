@@ -14,5 +14,23 @@ services:
     ports:
       - "5432:5432"
 
+  app:
+    image: rsoi-2022-lab1
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - ./main/:/app/
+    environment:
+      FLASK_APP: "/app/__init__.py"
+      FLASK_DEBUG: 1
+      APP_FOLDER: "/app"
+      DATABASE_URL: "postgresql://program:test@postgres:5432/persons"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    restart: always
+
 volumes:
   db-data:
