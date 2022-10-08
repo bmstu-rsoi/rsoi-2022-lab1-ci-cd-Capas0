@@ -16,9 +16,10 @@ jobs:
           fetch-depth: 0
 
       - name: Start local server
-        run: |
-          docker-compose up --build -d
-          sleep 60
+        run: docker-compose up --build -d
+
+      - name: Wait local server starting
+        run: sleep 30
 
       - name: Test project
         run: docker exec rsoi-2022-lab1 pytest
@@ -33,6 +34,9 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
+
+      - name: Wait heroku server starting
+        run: sleep 30
 
       - name: Run API Tests
         uses: matt-ball/newman-action@master
