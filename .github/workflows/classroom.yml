@@ -16,9 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: run docker-compose
-        uses: sudo-bot/action-docker-compose@latest
-        with:
-            cli-args: "up"
+        run: docker-compose up --build
 
       - name: Test project
         run: docker exec rsoi-2022-lab1 pytest
