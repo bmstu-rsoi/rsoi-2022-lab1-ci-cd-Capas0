@@ -1,7 +1,7 @@
 import pytest
 from marshmallow import ValidationError
 
-from main.app.schemas import PersonSchema
+from ..app.schemas import PersonSchema
 
 
 class TestPerson:
