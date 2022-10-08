@@ -16,7 +16,9 @@ jobs:
           fetch-depth: 0
 
       - name: Start local server
-        run: docker-compose up --build -d
+        run: |
+          docker-compose up --build -d
+          sleep 60
 
       - name: Test project
         run: docker exec rsoi-2022-lab1 pytest
