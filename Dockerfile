@@ -21,4 +21,4 @@ COPY --chown=$APP_USER:$APP_USER main/ $APP_HOME/
 USER $APP_USER
 
 # run app
-CMD ["python", "manage.py", "run", "-h", "0.0.0.0"]
+CMD gunicorn --bind 0.0.0.0:$PORT manage:app
