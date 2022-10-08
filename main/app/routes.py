@@ -23,7 +23,7 @@ def create_person():
         person = person_serializer.load(request.json)
         db.session.add(person)
         db.session.commit()
-        return jsonify(), 201, {'Location': url_for('api.get_person', person_id=person.id)}
+        return '', 201, {'Location': url_for('api.get_person', person_id=person.id)}
     except ValidationError as err:
         return jsonify({
             'message': 'Invalid data',
@@ -53,7 +53,7 @@ def delete_person(person_id):
     if person is not None:
         db.session.delete(person)
         db.session.commit()
-    return jsonify(), 204
+    return '', 204
 
 
 @api.route('/persons/<person_id>', methods=['PATCH'])
