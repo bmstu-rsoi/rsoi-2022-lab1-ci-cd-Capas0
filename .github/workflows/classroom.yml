@@ -15,11 +15,14 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: run docker-compose
-        run: docker-compose up --build
+      - name: Start local server
+        run: docker-compose up --build -d
 
       - name: Test project
         run: docker exec rsoi-2022-lab1 pytest
+
+      - name: Stop local server
+        run: docker-compose down
 
       - name: Deploy project
         uses: akhileshns/heroku-deploy@v3.12.12
